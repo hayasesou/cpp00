@@ -76,7 +76,7 @@ re:fclean all
 git:
 	@echo "remote repository :"
 	@echo ""
-	@echo $(REMOTE_REPSITORY)
+	@git remote -v | grep '(push)' | cut -d ' ' -f 1
 	@echo ""
 	@read -p "select ->" REPOSITORY ;\
 	read -p "write commit message : " MESSAGE;\
