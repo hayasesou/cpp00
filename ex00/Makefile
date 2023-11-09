@@ -59,7 +59,7 @@ $(DEPDIR):
 	@mkdir -p $@
 
 $(NAME): $(OBJ) 
-	$(COMPILER) $(CPP_FLAG) -c $(OBJ) -o $@
+	$(COMPILER) $(CPP_FLAG) $(OBJ) -o $@
 
 $(OBJDIR)/%.o: %.cpp
 	$(COMPILER) $(CPP_FLAG) $(DEP_FLAG) -c $< -o $@
@@ -83,8 +83,6 @@ git:
 	git add -A ;\
 	git commit -m "$$MESSAGE";\
 	git push $$REPOSITORY;
-
-test:
 
 -include $(DEP)
 
