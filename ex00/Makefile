@@ -1,6 +1,6 @@
 #===PROGRAM===#
 
-NAME = Megaphone
+NAME = megaphone
 
 #===COMPILER===#
 
