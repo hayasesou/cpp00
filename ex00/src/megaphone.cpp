@@ -1,7 +1,10 @@
 #include  <iostream>
 
-int main()
+int main(int ac, char **av)
 {
-	std ::cout << "Hello World" << std :: endl;
+	for(int i = 1; i < ac ; i++)
+	{
+		std ::cout << "Hello World " << av[i] <<  std :: endl;
+	}
 	return (0);
 }
