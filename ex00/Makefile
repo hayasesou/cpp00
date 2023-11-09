@@ -56,8 +56,6 @@ fclean:clean
 re:fclean all
 
 git:
-	#MESSAGE := $(shell read -p "write commit message : " $(MESSAGE))
-	#echo $$(MESSAGE)
 	@read -p "write commit message :" MESSAGE; git add .; \
     git commit -m "$$MESSAGE"; \
 	git push
