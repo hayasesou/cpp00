@@ -55,10 +55,12 @@ fclean:clean
 
 re:fclean all
 
+#https://www.nooozui.com/entry/20200129/1580277274
 git:
 	@read -p "write commit message : " MESSAGE;\
-	git add . ;\
-    git commit -m "$$MESSAGE";\
+	git add -A ;\
+	git commit -m "$$MESSAGE";\
 	git push;
 
 -include $(DEP)
+
