@@ -30,6 +30,23 @@ OBJ = $(patsubst $(SRCDIR)%.cpp, $(OBJDIR)%.o, $(SRC))
 DEP = $(patsubst $(SRCDIR)%.cpp, $(DEPDIR)%.d, $(SRC))
 vpath %.cpp $(SRCDIR)
 
+#===RREMOTE_REPSITORY===#
+
+REMOTE_REPSITORY = $(shell git remote)
+
+
+#===COLOR===#
+
+RED				:=	"\033[1;31m"
+GREEN			:=	"\033[1;32m"
+CYAN			:=	"\033[1;35m"
+BLUE			:=	"\033[1;36m"
+PURPLE          :=	"\033[1;34m"
+YELLOW			:=	"\033[1;33m"
+PINK            :=	"\033[38;5;206m"
+BOLD	   		:=  "\033[1m"
+EOC				:=	"\033[0;0m"
+
 #===RULES===#
 
 all: $(OBJDIR) $(DEPDIR) $(NAME) 
@@ -57,10 +74,15 @@ re:fclean all
 
 #https://www.nooozui.com/entry/20200129/1580277274
 git:
-	@read -p "write commit message : " MESSAGE;\
+	@echo "select remote repository :"
+	@echo $(REMOTE_REPSITORY)
+	@read REPOSITORY ;\
+	read -p "write commit message : " MESSAGE;\
 	git add -A ;\
 	git commit -m "$$MESSAGE";\
-	git push;
+	git push $$REPOSITORY;
+
+test:
 
 -include $(DEP)
 
