@@ -74,9 +74,11 @@ re:fclean all
 
 #https://www.nooozui.com/entry/20200129/1580277274
 git:
-	@echo "select remote repository :"
+	@echo "remote repository :"
+	@echo ""
 	@echo $(REMOTE_REPSITORY)
-	@read REPOSITORY ;\
+	@echo ""
+	@read -p "select ->" REPOSITORY ;\
 	read -p "write commit message : " MESSAGE;\
 	git add -A ;\
 	git commit -m "$$MESSAGE";\
