@@ -55,8 +55,6 @@ fclean:clean
 
 re:fclean all
 
-.ONESHELL:
-
 git:
 	@read -p "write commit message : " MESSAGE;\
 	git add . ;\
