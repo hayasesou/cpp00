@@ -1,6 +1,6 @@
 #===PROGRAM===#
 
-NAME = test
+NAME = PhoneBook
 
 #===COMPILER===#
 
