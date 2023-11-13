@@ -4,8 +4,8 @@
 
 #include <string>
 
-class CONTACT {
-	private	:
+class Contact {
+	public	:
 		std::string 	first_name;
 		std::string 	last_name;
 		std::string 	nick_name;
