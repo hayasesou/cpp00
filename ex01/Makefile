@@ -11,7 +11,7 @@ COMPILER = c++
 WARN_FLAG = -Wall -Wextra -Werror -Wconversion -Wshadow
 STD_FLAG = -std=c++98
 DEP_FLAG = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.d
-
+INCLUDE_FLAG = -I
 
 CPP_FLAG = $(STD_FLAG) -g $(WARN_FLAG)
 
@@ -24,6 +24,7 @@ RM = rm -rf
 SRCDIR = ./src
 OBJDIR = ./obj
 DEPDIR = ./dep
+INCDIR = ./include
 
 #===FILE===#
 
@@ -64,7 +65,7 @@ $(NAME): $(OBJ)
 	$(COMPILER) $(CPP_FLAG) $(OBJ) -o $@
 
 $(OBJDIR)/%.o: %.cpp
-	$(COMPILER) $(CPP_FLAG) $(DEP_FLAG) -c $< -o $@
+	$(COMPILER) $(CPP_FLAG) $(DEP_FLAG) $(INCLUDE_FLAG) $(INCDIR) -c $< -o $@
 
 clean:
 	$(RM) $(OBJDIR) $(DEPDIR)
