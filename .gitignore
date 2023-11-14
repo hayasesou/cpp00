@@ -1,5 +1,7 @@
 obj
 dep
+objs/*
+deps/*
 a.out
 megaphone
 PhoneBook
