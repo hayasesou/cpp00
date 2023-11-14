@@ -1,9 +1,7 @@
-#include "Contact.hpp"
-#include <iostream>
+#include "ex01.hpp"
 
 int main()
 {
-	std::cout <<  "hello :)" << std::endl;
 	std::cout<< "This is PhoneBook. Please input one of the three bcommands below."<< std::endl;
 	std::cout << " ADD    : save a new contact" <<std :: endl;
 	std::cout << " SEARCH : display a specific contacts" << std::endl;

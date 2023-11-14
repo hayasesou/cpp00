@@ -13,30 +13,32 @@ STD_FLAG = -std=c++98
 DEP_FLAG = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.d
 INCLUDE_FLAG = -I
 
-CPP_FLAG = $(STD_FLAG) -g $(WARN_FLAG)
+CPP_FLAG = $(STD_FLAG) $(WARN_FLAG)
 
-#===RM====#
+#===RM===#
 
 RM = rm -rf
 
 #===DIRECTORY===#
 
-SRCDIR = ./src
-OBJDIR = ./obj
-DEPDIR = ./dep
+SRCDIR = ./srcs
+SRC_SUBDIR = $(shell find $(SRCDIR) -type d)
+OBJDIR = ./objs
+OBJ_SUBDIR = $(patsubst $(SRCDIR)%, $(OBJDIR)%, $(SRC_SUBDIR))
+DEPDIR = ./deps
+DEP_SUBDIR = $(patsubst $(SRCDIR)%, $(DEPDIR)%, $(SRC_SUBDIR))
 INCDIR = ./include
 
 #===FILE===#
 
-SRC = $(shell find $(SRCDIR) -name "*.cpp")
+SRC = $(shell find $(SRCDIR) -name "*.cpp" -type f )
 OBJ = $(patsubst $(SRCDIR)%.cpp, $(OBJDIR)%.o, $(SRC))
 DEP = $(patsubst $(SRCDIR)%.cpp, $(DEPDIR)%.d, $(SRC))
-vpath %.cpp $(SRCDIR)
+vpath %.cpp $(SRCDIR) : $(SRCDIR)*
 
 #===RREMOTE_REPSITORY===#
 
 REMOTE_REPSITORY = $(shell git remote)
-
 
 #===COLOR===#
 
@@ -56,7 +58,8 @@ all: $(DEPDIR) $(NAME)
 
 
 $(DEPDIR):
-	@mkdir -p $@
+	##@mkdir -p $@/src2
+	mkdir -p $(DEP_SUBDIR)
 
 $(NAME): $(OBJ) 
 	$(COMPILER) $(CPP_FLAG) $(OBJ) -o $@
@@ -65,7 +68,8 @@ $(NAME): $(OBJ)
 $(OBJ): | $(OBJDIR)
 
 $(OBJDIR):
-	@mkdir -p $@
+	##@mkdir -p $@/src2
+	@mkdir -p $(OBJ_SUBDIR)
 
 $(OBJDIR)/%.o: %.cpp
 	$(COMPILER) $(CPP_FLAG) $(DEP_FLAG) $(INCLUDE_FLAG) $(INCDIR) -c $< -o $@
