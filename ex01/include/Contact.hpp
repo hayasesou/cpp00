@@ -27,6 +27,7 @@ class Contact {
 		{
 			std::cout << contact.first_name << std:: endl;
 		}
+
 };
 
 #endif

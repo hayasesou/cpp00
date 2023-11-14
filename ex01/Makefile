@@ -52,17 +52,20 @@ EOC				:=	"\033[0;0m"
 
 #===RULES===#
 
-all: $(OBJDIR) $(DEPDIR) $(NAME) 
+all: $(DEPDIR) $(NAME) 
 
-
-$(OBJDIR):
-	@mkdir -p $@
 
 $(DEPDIR):
 	@mkdir -p $@
 
 $(NAME): $(OBJ) 
 	$(COMPILER) $(CPP_FLAG) $(OBJ) -o $@
+
+#https://qiita.com/progrunner/items/9687ff35c364f3d864e3
+$(OBJ): | $(OBJDIR)
+
+$(OBJDIR):
+	@mkdir -p $@
 
 $(OBJDIR)/%.o: %.cpp
 	$(COMPILER) $(CPP_FLAG) $(DEP_FLAG) $(INCLUDE_FLAG) $(INCDIR) -c $< -o $@
@@ -86,6 +89,19 @@ git:
 	git add -A ;\
 	git commit -m "$$MESSAGE";\
 	git push $$REPOSITORY;
+
+
+HAS_TREE = $(shell brew list | grep "tree")
+
+ifeq ($(HAS_TREE),)
+    TREE_CMD = @pwd;find . | sort | sed '1d;s/^\.//;s/\/\([^/]*\)$$/|--\1/;s/\/[^/|]*/|  /g'
+else
+    TREE_CMD := @tree
+endif
+
+tree:
+	$(TREE_CMD)
+
 
 -include $(DEP)
 

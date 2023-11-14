@@ -3,6 +3,12 @@
 
 int main()
 {
+	std::cout <<  "hello :)" << std::endl;
+	std::cout<< "This is PhoneBook. Please input one of the three bcommands below."<< std::endl;
+	std::cout << " ADD    : save a new contact" <<std :: endl;
+	std::cout << " SEARCH : display a specific contacts" << std::endl;
+	std::cout << " EXIT   : The program quits and the contacts are lost forever!" << std::endl;
+
 	Contact	test;
 
 	test.set_contact("jonathan", "josetar", "jojo", 123456789, "Dio killed my father");
