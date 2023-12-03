@@ -13,7 +13,7 @@ STD_FLAG = -std=c++98
 DEP_FLAG = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.d
 INCLUDE_FLAG = -I
 
-CPP_FLAG = $(STD_FLAG) $(WARN_FLAG)
+CXX_FLAG = $(STD_FLAG) $(WARN_FLAG)
 
 #===RM===#
 
@@ -72,7 +72,7 @@ $(OBJDIR):
 	@mkdir -p $(OBJ_SUBDIR)
 
 $(OBJDIR)/%.o: %.cpp
-	$(COMPILER) $(CPP_FLAG) $(DEP_FLAG) $(INCLUDE_FLAG) $(INCDIR) -c $< -o $@
+	$(COMPILER) $(CXX_FLAG) $(DEP_FLAG) $(INCLUDE_FLAG) $(INCDIR) -c $< -o $@
 
 clean:
 	$(RM) $(OBJDIR) $(DEPDIR)
